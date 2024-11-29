@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from procesos_web.obtener_folios_paperless import lista_series_folios, documentos
 from procesos_web.codigos_series import series_codigos
@@ -42,6 +43,7 @@ def folios(tipo_documento):
         # Devolver el DataFrame completo en forma de tabla HTML
         return df.to_html(index=False)
 
+port = int(os.environ.get("PORT", 5200)) 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5200, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
