@@ -1,5 +1,8 @@
 FROM python:3.10-slim-bullseye
 
+# Allow statements and log messages to immediately appear in the Knative logs
+ENV PYTHONUNBUFFERED True
+
 # Ajuste de hora
 RUN apt-get update && apt-get install -y tzdata
 ENV TZ="Chile/Continental"
@@ -72,8 +75,15 @@ COPY procesos_web /app/procesos_web
 ENV DISPLAY=:99
 
 # Exponer el puerto para Flask
-EXPOSE 8080
+#EXPOSE 8080
 
 # Comando para ejecutar la aplicación Flask
-CMD ["python", "/app/app.py"]
+#CMD ["python", "/app/app.py"]
+
+# Run the web service on container startup. Here we use the gunicorn
+# webserver, with one worker process and 8 threads.
+# For environments with multiple CPU cores, increase the number of workers
+# to be equal to the cores available.
+# Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run to handle instance scaling.
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
 
