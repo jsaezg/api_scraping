@@ -70,7 +70,7 @@ COPY procesos_web /app/procesos_web
 
 # Configurar variable de entorno DISPLAY para evitar crashes
 ENV DISPLAY=:99
-ENV PORT=8080
+
 # Exponer el puerto para Flask
 EXPOSE 8080
 
