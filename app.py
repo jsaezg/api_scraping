@@ -4,7 +4,7 @@ from scrapping_driver.test_url import get_web
 
 app = Flask(__name__)
 
-port = int(os.environ.get("PORT", 5200)) 
+
 
 @app.route('/')
 def home():
@@ -19,6 +19,10 @@ def get_web_endpoint():
 @app.route('/test')
 def test():
     return "This is a test endpoint!"
+
+
+
+port = int(os.environ.get("PORT", 5200)) 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=True)

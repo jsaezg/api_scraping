@@ -70,9 +70,10 @@ COPY procesos_web /app/procesos_web
 
 # Configurar variable de entorno DISPLAY para evitar crashes
 ENV DISPLAY=:99
-
+ENV PORT=8080
 # Exponer el puerto para Flask
-EXPOSE 5200
+EXPOSE 8080
 
 # Comando para ejecutar la aplicación Flask
-CMD ["python", "/app/app.py"]
+#CMD ["python", "/app/app.py"]
+CMD ["sh", "-c", "python /app/app.py --port=$PORT"]
