@@ -75,5 +75,5 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación Flask
-#CMD ["python", "/app/app.py"]
-CMD ["sh", "-c", "python /app/app.py --port=$PORT"]
+CMD ["python", "/app/app.py"]
+
